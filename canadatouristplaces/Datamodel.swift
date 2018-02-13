@@ -9,5 +9,15 @@
 import UIKit
 
 class Datamodel: NSObject {
+    
+    
+    func documentDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    func dataFilePath() -> URL {
+        print(documentDirectory())
+        return documentDirectory().appendingPathComponent("Checklist.plist")
+    }
 
 }

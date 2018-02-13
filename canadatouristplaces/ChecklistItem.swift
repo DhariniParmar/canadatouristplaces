@@ -9,5 +9,14 @@
 import UIKit
 
 class ChecklistItem: NSObject {
+    
+    var text = ""
+    var checked = false
+    var iconName:String = ""
+    
+    init(text: String, checked:Bool){
+        self.text = text
+        self.checked = checked
+    }
 
 }

@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol IconPickerVCDelegate: class {
+    func iconPicker(_ controller: IconPickerViewController, didPick iconName: String)
+}
+
 class IconPickerViewController: UITableViewController {
+    
+    let icons = ["British_Columbia", "Nova Scotia", "Ontario", "Quebec"]
+    weak var delegate: IconPickerVCDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,24 +36,29 @@ class IconPickerViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return icons.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IconCell", for: indexPath)
 
         // Configure the cell...
+        cell.textLabel?.text = icons[indexPath.row]
+        cell.imageView?.image = UIImage(named:icons[indexPath.row])
 
         return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.iconPicker(self, didPick: icons[indexPath.row])
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

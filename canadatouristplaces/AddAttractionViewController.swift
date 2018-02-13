@@ -8,10 +8,38 @@
 
 import UIKit
 
-class AddAttractionViewController: UITableViewController {
+protocol AddAttractionVCDelegate: class {
+    
+    func addAttractionVCDidCancel()
+    func addAttractionVC(_ control: AddAttractionViewController, didFinishAdd item: ChecklistItem)
+    func addAttractionVC(_ control: AddAttractionViewController, didFinishEdit item: ChecklistItem)
+}
 
+class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
+    
+    
+    @IBOutlet weak var textfield: UITextField!
+    weak var delegate: AddAttractionVCDelegate?
+    
+    @IBOutlet weak var iconImage: UIImageView!
+    
+    var itemtoEdit: ChecklistItem?
+     var iconName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let item = itemtoEdit {
+            textfield.text = item.text
+            self.title = "EditItem"
+            iconName = item.iconName
+            if let iconName = iconName {
+                iconImage.image = UIImage(named: iconName)
+            }
+           
+        } else {
+            title = "AddItem"
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -24,19 +52,57 @@ class AddAttractionViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBAction func done(_ sender: UIBarButtonItem) {
+        
+        if let item = itemtoEdit {
+            item.text = textfield.text!
+            if let icon = iconName {
+                item.iconName = icon
+            }
+           
+            delegate?.addAttractionVC(self, didFinishEdit: item)
+        } else {
+            //extract the textfield content
+            let text = textfield.text!
+            //make a new checklistitem object
+            let item = ChecklistItem(text: text, checked: false)
+            if let icon = iconName {
+                item.iconName = icon
+            }
+            //send it back to the upper stream VC
+            delegate?.addAttractionVC(self, didFinishAdd: item)
+        }
+        
+    }
+    
 
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        delegate?.addAttractionVCDidCancel()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 2
     }
 
+    func iconPicker(_ controller: IconPickerViewController, didPick iconName: String) {
+        self.iconName = iconName
+        //place the icon represented by the picked icon name in the image view
+        iconImage.image = UIImage(named: iconName)
+        //dismiss the iconpicker vc
+        //dismiss(animated: true, completion: nil)???
+        navigationController?.popViewController(animated: true)
+    }
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -82,14 +148,17 @@ class AddAttractionViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let controller = segue.destination as! IconPickerViewController
+        controller.delegate = self
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

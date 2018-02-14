@@ -13,10 +13,12 @@ class ChecklistItem: NSObject {
     var text = ""
     var checked = false
     var iconName:String = ""
+    var location = ""
     
-    init(text: String, checked:Bool){
+    init(text: String, checked:Bool, location: String){
         self.text = text
         self.checked = checked
+        self.location = location
     }
 
 }

@@ -19,6 +19,8 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
     
     
     @IBOutlet weak var textfield: UITextField!
+    
+    @IBOutlet weak var textfieldLocation: UITextField!
     weak var delegate: AddAttractionVCDelegate?
     
     @IBOutlet weak var iconImage: UIImageView!
@@ -31,6 +33,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
         
         if let item = itemtoEdit {
             textfield.text = item.text
+            textfieldLocation.text = item.location
             self.title = "EditItem"
             iconName = item.iconName
             if let iconName = iconName {
@@ -58,6 +61,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
         
         if let item = itemtoEdit {
             item.text = textfield.text!
+            item.location = textfieldLocation.text!
             if let icon = iconName {
                 item.iconName = icon
             }
@@ -66,8 +70,9 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
         } else {
             //extract the textfield content
             let text = textfield.text!
+            let location = textfieldLocation.text!
             //make a new checklistitem object
-            let item = ChecklistItem(text: text, checked: false)
+            let item = ChecklistItem(text: text, checked: false, location: location)
             if let icon = iconName {
                 item.iconName = icon
             }
@@ -91,7 +96,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 3
     }
 
     func iconPicker(_ controller: IconPickerViewController, didPick iconName: String) {

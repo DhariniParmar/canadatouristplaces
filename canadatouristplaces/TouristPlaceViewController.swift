@@ -34,7 +34,7 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
     
     @IBAction func add(_ sender: UIBarButtonItem) {
         
-        let item = ChecklistItem(text: "Canada Place", checked: false);
+        let item = ChecklistItem(text: "Canada Place", checked: false, location: "Vancouver");
         let newRow = checklist.count;
         checklist.append(item)
         let indexPath = IndexPath(row: newRow, section: 0)

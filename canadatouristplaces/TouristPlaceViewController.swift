@@ -34,7 +34,7 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
     
     @IBAction func add(_ sender: UIBarButtonItem) {
         
-        let item = ChecklistItem(text: "Canada Place", checked: false, location: "Vancouver");
+        let item = ChecklistItem(text: "Canada Place", checked: false, location: "Vancouver", slider: 2.5);
         let newRow = checklist.count;
         checklist.append(item)
         let indexPath = IndexPath(row: newRow, section: 0)
@@ -111,10 +111,10 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if (segue.identifier == "AddItem") {
+        if (segue.identifier == "AddAttraction") {
             let controller = segue.destination as! AddAttractionViewController
             controller.delegate = self
-        } else if (segue.identifier == "EditItem") {
+        } else if (segue.identifier == "EditAttraction") {
             let controller = segue.destination as! AddAttractionViewController
             controller.delegate = self
             //identify which cell was touched on

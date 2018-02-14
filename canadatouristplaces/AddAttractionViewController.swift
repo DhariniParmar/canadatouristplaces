@@ -20,7 +20,9 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
     
     @IBOutlet weak var textfield: UITextField!
     
+    @IBOutlet weak var showRate: UILabel!
     
+    @IBOutlet weak var ratingSlider: UISlider!
     @IBOutlet var datePickerCell: UITableViewCell!
     
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -41,14 +43,16 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
         if let item = itemtoEdit {
             textfield.text = item.text
             textfieldLocation.text = item.location
-            self.title = "EditItem"
+            ratingSlider.value = item.slider
+            showRate.text = String(ratingSlider.value)
+            self.title = "EditAttraction"
             iconName = item.iconName
             if let iconName = iconName {
                 iconImage.image = UIImage(named: iconName)
             }
            
         } else {
-            title = "AddItem"
+            title = "AddAttraction"
         }
 
         // Uncomment the following line to preserve selection between presentations
@@ -86,6 +90,8 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
         if let item = itemtoEdit {
             item.text = textfield.text!
             item.location = textfieldLocation.text!
+            item.slider = ratingSlider.value
+            showRate.text = String(ratingSlider.value)
             if let icon = iconName {
                 item.iconName = icon
             }
@@ -95,8 +101,9 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
             //extract the textfield content
             let text = textfield.text!
             let location = textfieldLocation.text!
+            let sliderValue = ratingSlider.value
             //make a new checklistitem object
-            let item = ChecklistItem(text: text, checked: false, location: location)
+            let item = ChecklistItem(text: text, checked: false, location: location, slider: sliderValue )
             if let icon = iconName {
                 item.iconName = icon
             }
@@ -138,7 +145,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
 
         // Configure the cell...
 
-        if indexPath.row == 4 {
+        if indexPath.row == 5 {
             return datePickerCell
         }
         return super.tableView(tableView, cellForRowAt: indexPath)
@@ -146,7 +153,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
     
     // use table cell height to control the show and hide of date picker
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 4 {
+        if indexPath.row == 5 {
             if datePickerSwitch.isOn {
                 return 217
             } else {

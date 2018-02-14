@@ -46,7 +46,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="qAI-9e-4rc" kind="show" identifier="EditItem" trigger="accessoryAction" id="9gG-g1-M1a"/>
+                                    <segue destination="qAI-9e-4rc" kind="show" identifier="EditAttraction" trigger="accessoryAction" id="9gG-g1-M1a"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -60,7 +60,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cFV-x9-pgg">
                             <connections>
                                 <action selector="add:" destination="UfY-FN-bzp" id="PLd-Vu-BF9"/>
-                                <segue destination="qAI-9e-4rc" kind="show" identifier="AddItem" id="crK-Ks-ItM"/>
+                                <segue destination="qAI-9e-4rc" kind="show" identifier="AddAttraction" id="crK-Ks-ItM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -177,8 +177,50 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wzK-Vb-5yJ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NW7-az-X6j">
                                         <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NW7-az-X6j" id="fvd-XC-C0j">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sx-lf-Cfd">
+                                                    <rect key="frame" x="28" y="11" width="56" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exN-bo-LUO">
+                                                    <rect key="frame" x="96" y="10" width="15" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8On-dD-oLS">
+                                                    <rect key="frame" x="111" y="6" width="185" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hud-hM-uGQ">
+                                                    <rect key="frame" x="295" y="9" width="17" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msS-gs-gmG">
+                                                    <rect key="frame" x="320" y="9" width="39" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wzK-Vb-5yJ">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wzK-Vb-5yJ" id="PYz-hA-25G">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -213,6 +255,8 @@
                         <outlet property="datePickerSwitch" destination="4bd-DQ-x2e" id="dxS-Ot-Xai"/>
                         <outlet property="dueDateLabel" destination="lKZ-Ba-KZW" id="ekD-ra-iZ9"/>
                         <outlet property="iconImage" destination="OuJ-1f-27u" id="VYa-BP-Ekz"/>
+                        <outlet property="ratingSlider" destination="8On-dD-oLS" id="sEm-UJ-GMf"/>
+                        <outlet property="showRate" destination="msS-gs-gmG" id="q2c-Xq-50v"/>
                         <outlet property="textfield" destination="Kzy-ef-IJo" id="aHZ-Yn-ESx"/>
                         <outlet property="textfieldLocation" destination="01D-Dz-8bs" id="dcO-qR-QYB"/>
                     </connections>

@@ -14,11 +14,13 @@ class ChecklistItem: NSObject {
     var checked = false
     var iconName:String = ""
     var location = ""
+    var slider:Float = 0.0
     
-    init(text: String, checked:Bool, location: String){
+    init(text: String, checked:Bool, location: String, slider: Float){
         self.text = text
         self.checked = checked
         self.location = location
+        self.slider = slider
     }
 
 }

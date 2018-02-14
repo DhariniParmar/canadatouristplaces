@@ -19,5 +19,33 @@ class Datamodel: NSObject {
         print(documentDirectory())
         return documentDirectory().appendingPathComponent("Checklist.plist")
     }
+//
+//    func saveChecklist() {
+//        //get an encoder
+//        let encoder = PropertyListEncoder()
+//        //encode
+//        do {
+//            let data = try encoder.encode(checklist)
+//            //write the encoded data to the dataFilePath
+//            try data.write(to: dataFilePath())
+//        } catch {
+//            print("Encoding error")
+//        }
+//
+//    }
+//    func loadChecklist() {
+//        //get a decoder tool
+//        let path = dataFilePath()
+//        //read from the device
+//        if let data = try? Data(contentsOf: path) {
+//            do {
+//                //decode the data into object
+//                let decoder = PropertyListDecoder()
+//               // checklist = try decoder.decode([ChecklistItem].self, from: data)
+//            } catch {
+//                print("decoding error")
+//            }
+//        }
+//    }
 
 }

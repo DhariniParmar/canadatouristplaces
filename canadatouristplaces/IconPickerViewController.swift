@@ -14,7 +14,7 @@ protocol IconPickerVCDelegate: class {
 
 class IconPickerViewController: UITableViewController {
     
-    let icons = ["British_Columbia", "Nova Scotia", "Ontario", "Quebec"]
+    let icons = ["British_Columbia", "Nova_Scotia", "Ontario", "Quebec", "Alberta", "Manitoba"]
     weak var delegate: IconPickerVCDelegate?
 
     override func viewDidLoad() {

@@ -285,7 +285,7 @@
             </objects>
             <point key="canvasLocation" x="1640.8" y="98.50074962518741"/>
         </scene>
-        <!--Icon Picker View Controller-->
+        <!--Pick a Province Icon-->
         <scene sceneID="xBF-Dk-9tq">
             <objects>
                 <tableViewController id="R5A-Xc-NHD" customClass="IconPickerViewController" customModule="canadatouristplaces" customModuleProvider="target" sceneMemberID="viewController">
@@ -308,6 +308,7 @@
                             <outlet property="delegate" destination="R5A-Xc-NHD" id="x3z-rO-Ctt"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Pick a Province Icon" id="fes-Pz-mqr"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dae-eD-rk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

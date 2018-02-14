@@ -35,7 +35,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
     @IBOutlet weak var iconImage: UIImageView!
     
     var itemtoEdit: ChecklistItem?
-     var iconName: String?
+     var iconProvinceName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +46,8 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
             ratingSlider.value = item.slider
             showRate.text = String(ratingSlider.value)
             self.title = "EditAttraction"
-            iconName = item.iconName
-            if let iconName = iconName {
+            iconProvinceName = item.iconName
+            if let iconName = iconProvinceName {
                 iconImage.image = UIImage(named: iconName)
             }
            
@@ -92,7 +92,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
             item.location = textfieldLocation.text!
             item.slider = ratingSlider.value
             showRate.text = String(ratingSlider.value)
-            if let icon = iconName {
+            if let icon = iconProvinceName {
                 item.iconName = icon
             }
            
@@ -104,7 +104,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
             let sliderValue = ratingSlider.value
             //make a new checklistitem object
             let item = ChecklistItem(text: text, checked: false, location: location, slider: sliderValue )
-            if let icon = iconName {
+            if let icon = iconProvinceName {
                 item.iconName = icon
             }
             //send it back to the upper stream VC
@@ -131,7 +131,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
     }
 */
     func iconPicker(_ controller: IconPickerViewController, didPick iconName: String) {
-        self.iconName = iconName
+        self.iconProvinceName = iconName
         //place the icon represented by the picked icon name in the image view
         iconImage.image = UIImage(named: iconName)
         //dismiss the iconpicker vc

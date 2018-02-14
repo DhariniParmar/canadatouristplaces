@@ -10,9 +10,9 @@ import UIKit
 
 class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate {
     
-    
+    var datamodel: Datamodel!
 
- var checklist: [ChecklistItem] = [ChecklistItem]()
+    var checklist: [ChecklistItem] = [ChecklistItem]()
     
    // var data: Datamodel!
     
@@ -158,7 +158,7 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
     func addAttractionVC(_ control: AddAttractionViewController, didFinishEdit item: ChecklistItem) {
         if let index = checklist.index(of: item) {
             checklist[index].text = item.text
-            saveChecklist()
+            //datamodel.saveChecklist()
             let indexPath = IndexPath(row: index, section: 0)
             //update the table view
             if let cell = tableView.cellForRow(at: indexPath) {
@@ -174,41 +174,6 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
         
     }
     
-    func documentDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    func dataFilePath() -> URL {
-        print(documentDirectory())
-        return documentDirectory().appendingPathComponent("Checklist.plist")
-    }
-    func saveChecklist() {
-        //get an encoder
-        let encoder = PropertyListEncoder()
-        //encode
-        do {
-            let data = try encoder.encode(checklist)
-            //write the encoded data to the dataFilePath
-            try data.write(to: dataFilePath())
-        } catch {
-            print("Encoding error")
-        }
-        
-    }
-    func loadChecklist() {
-        //get a decoder tool
-        let path = dataFilePath()
-        //read from the device
-        if let data = try? Data(contentsOf: path) {
-            do {
-                //decode the data into object
-                let decoder = PropertyListDecoder()
-                checklist = try decoder.decode([ChecklistItem].self, from: data)
-            } catch {
-                print("decoding error")
-            }
-        }
-    }
     
 
 }

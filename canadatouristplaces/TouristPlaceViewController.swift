@@ -18,7 +18,7 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -89,7 +89,16 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            let checkmarklabel = cell.viewWithTag(1001) as! UILabel
+            if (checkmarklabel.text == "√") {
+                checkmarklabel.text = ""
+            } else {
+                checkmarklabel.text = "√"
+            }
+        }
+    }
 
     /*
     // Override to support rearranging the table view.
@@ -149,7 +158,7 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
     func addAttractionVC(_ control: AddAttractionViewController, didFinishEdit item: ChecklistItem) {
         if let index = checklist.index(of: item) {
             checklist[index].text = item.text
-          // data.saveChecklist()
+            saveChecklist()
             let indexPath = IndexPath(row: index, section: 0)
             //update the table view
             if let cell = tableView.cellForRow(at: indexPath) {
@@ -163,6 +172,42 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
         //dismiss the itemDetailsVC
         navigationController?.popViewController(animated: true)
         
+    }
+    
+    func documentDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    func dataFilePath() -> URL {
+        print(documentDirectory())
+        return documentDirectory().appendingPathComponent("Checklist.plist")
+    }
+    func saveChecklist() {
+        //get an encoder
+        let encoder = PropertyListEncoder()
+        //encode
+        do {
+            let data = try encoder.encode(checklist)
+            //write the encoded data to the dataFilePath
+            try data.write(to: dataFilePath())
+        } catch {
+            print("Encoding error")
+        }
+        
+    }
+    func loadChecklist() {
+        //get a decoder tool
+        let path = dataFilePath()
+        //read from the device
+        if let data = try? Data(contentsOf: path) {
+            do {
+                //decode the data into object
+                let decoder = PropertyListDecoder()
+                checklist = try decoder.decode([ChecklistItem].self, from: data)
+            } catch {
+                print("decoding error")
+            }
+        }
     }
     
 

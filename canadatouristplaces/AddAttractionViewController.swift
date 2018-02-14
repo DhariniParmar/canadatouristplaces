@@ -20,6 +20,13 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
     
     @IBOutlet weak var textfield: UITextField!
     
+    
+    @IBOutlet var datePickerCell: UITableViewCell!
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    
+    @IBOutlet weak var datePickerSwitch: UISwitch!
     @IBOutlet weak var textfieldLocation: UITextField!
     weak var delegate: AddAttractionVCDelegate?
     
@@ -57,6 +64,23 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
     }
     
     
+    @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        dueDateLabel.text = formatter.string(from: datePicker.date)
+        
+    }
+    
+    
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        
+        tableView.reloadData()
+    }
+    
+    
+    
     @IBAction func done(_ sender: UIBarButtonItem) {
         
         if let item = itemtoEdit {
@@ -88,7 +112,7 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
     }
     
     // MARK: - Table view data source
-
+/*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -96,9 +120,9 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 5
     }
-
+*/
     func iconPicker(_ controller: IconPickerViewController, didPick iconName: String) {
         self.iconName = iconName
         //place the icon represented by the picked icon name in the image view
@@ -108,15 +132,30 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
         navigationController?.popViewController(animated: true)
     }
     
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
 
-        return cell
+        if indexPath.row == 4 {
+            return datePickerCell
+        }
+        return super.tableView(tableView, cellForRowAt: indexPath)
     }
-    */
+    
+    // use table cell height to control the show and hide of date picker
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 4 {
+            if datePickerSwitch.isOn {
+                return 217
+            } else {
+                return 0
+            }
+        } else {
+            return 44
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

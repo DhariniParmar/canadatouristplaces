@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FF7283C2033D7BF00ABE2BD /* Datamodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF7283B2033D7BF00ABE2BD /* Datamodel.swift */; };
 		3FF8338920336F140070F1B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF8338820336F140070F1B4 /* AppDelegate.swift */; };
 		3FF8338E20336F150070F1B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8338C20336F150070F1B4 /* Main.storyboard */; };
 		3FF8339020336F150070F1B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8338F20336F150070F1B4 /* Assets.xcassets */; };
@@ -15,7 +16,6 @@
 		3FF833A920336F150070F1B4 /* canadatouristplacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF833A820336F150070F1B4 /* canadatouristplacesUITests.swift */; };
 		3FF833B7203372CD0070F1B4 /* TouristPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF833B6203372CD0070F1B4 /* TouristPlaceViewController.swift */; };
 		3FF833B9203373370070F1B4 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF833B8203373370070F1B4 /* ChecklistItem.swift */; };
-		3FF833BB2033739A0070F1B4 /* Datamodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF833BA2033739A0070F1B4 /* Datamodel.swift */; };
 		3FF833BD20337CCB0070F1B4 /* AddAttractionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF833BC20337CCB0070F1B4 /* AddAttractionViewController.swift */; };
 		3FF833BF20338C9F0070F1B4 /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF833BE20338C9F0070F1B4 /* IconPickerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FF7283B2033D7BF00ABE2BD /* Datamodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datamodel.swift; sourceTree = "<group>"; };
 		3FF8338520336F140070F1B4 /* canadatouristplaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = canadatouristplaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF8338820336F140070F1B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FF8338D20336F150070F1B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,7 +53,6 @@
 		3FF833AA20336F150070F1B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FF833B6203372CD0070F1B4 /* TouristPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristPlaceViewController.swift; sourceTree = "<group>"; };
 		3FF833B8203373370070F1B4 /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
-		3FF833BA2033739A0070F1B4 /* Datamodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datamodel.swift; sourceTree = "<group>"; };
 		3FF833BC20337CCB0070F1B4 /* AddAttractionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAttractionViewController.swift; sourceTree = "<group>"; };
 		3FF833BE20338C9F0070F1B4 /* IconPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,9 +112,9 @@
 				3FF8339420336F150070F1B4 /* Info.plist */,
 				3FF833B6203372CD0070F1B4 /* TouristPlaceViewController.swift */,
 				3FF833B8203373370070F1B4 /* ChecklistItem.swift */,
-				3FF833BA2033739A0070F1B4 /* Datamodel.swift */,
 				3FF833BC20337CCB0070F1B4 /* AddAttractionViewController.swift */,
 				3FF833BE20338C9F0070F1B4 /* IconPickerViewController.swift */,
+				3FF7283B2033D7BF00ABE2BD /* Datamodel.swift */,
 			);
 			path = canadatouristplaces;
 			sourceTree = "<group>";
@@ -272,9 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FF833B7203372CD0070F1B4 /* TouristPlaceViewController.swift in Sources */,
-				3FF833BB2033739A0070F1B4 /* Datamodel.swift in Sources */,
 				3FF833B9203373370070F1B4 /* ChecklistItem.swift in Sources */,
 				3FF833BF20338C9F0070F1B4 /* IconPickerViewController.swift in Sources */,
+				3FF7283C2033D7BF00ABE2BD /* Datamodel.swift in Sources */,
 				3FF8338920336F140070F1B4 /* AppDelegate.swift in Sources */,
 				3FF833BD20337CCB0070F1B4 /* AddAttractionViewController.swift in Sources */,
 			);

@@ -10,14 +10,15 @@ import UIKit
 
 class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate {
     
-    var datamodel: Datamodel!
+    var datamodel = Datamodel()
 
-    var checklist: [ChecklistItem] = [ChecklistItem]()
+   // var checklist: [ChecklistItem] = [ChecklistItem]()
     
    // var data: Datamodel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        datamodel.loadChecklist()
       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -36,8 +37,8 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
     @IBAction func add(_ sender: UIBarButtonItem) {
         
         let item = ChecklistItem(text: "Canada Place", checked: false, location: "Vancouver", slider: 2.5);
-        let newRow = checklist.count;
-        checklist.append(item)
+        let newRow = datamodel.checklist.count;
+        datamodel.checklist.append(item)
         let indexPath = IndexPath(row: newRow, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
@@ -51,7 +52,7 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return  checklist.count
+        return  datamodel.checklist.count
     }
 
     
@@ -60,10 +61,10 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
 
         // Configure the cell.
         let label = cell.viewWithTag(1000) as! UILabel
-        label.text = checklist[indexPath.row].text
+        label.text = datamodel.checklist[indexPath.row].text
         let checkmarklabel = cell.viewWithTag(1001) as! UILabel
         checkmarklabel.text = "√"
-        let iconName = checklist[indexPath.row].iconName
+        let iconName = datamodel.checklist[indexPath.row].iconName
       let imageView = cell.viewWithTag(1002) as! UIImageView
         imageView.image = UIImage(named:iconName)
 
@@ -130,7 +131,7 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
             //identify which cell was touched on
             let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
             //extract the data / text
-            let item = checklist[indexPath!.row]
+            let item = datamodel.checklist[indexPath!.row]
             //send the data to AddAttractionVC
             controller.itemtoEdit = item
         }
@@ -147,8 +148,9 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
     
     func addAttractionVC(_ control: AddAttractionViewController, didFinishAdd item: ChecklistItem) {
         
-        let newRow = checklist.count;
-        checklist.append(item)
+        let newRow = datamodel.checklist.count;
+        datamodel.checklist.append(item)
+        datamodel.saveChecklist()
         let indexPath = IndexPath(row: newRow, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         navigationController?.popViewController(animated: true)
@@ -156,15 +158,15 @@ class TouristPlaceViewController: UITableViewController, AddAttractionVCDelegate
     }
     
     func addAttractionVC(_ control: AddAttractionViewController, didFinishEdit item: ChecklistItem) {
-        if let index = checklist.index(of: item) {
-            checklist[index].text = item.text
-            //datamodel.saveChecklist()
+        if let index = datamodel.checklist.index(of: item) {
+            datamodel.checklist[index].text = item.text
+            datamodel.saveChecklist()
             let indexPath = IndexPath(row: index, section: 0)
             //update the table view
             if let cell = tableView.cellForRow(at: indexPath) {
                 let label = cell.viewWithTag(1000) as! UILabel
                 label.text = item.text
-                let iconName = checklist[indexPath.row].iconName
+                let iconName = datamodel.checklist[indexPath.row].iconName
                 let imageView = cell.viewWithTag(1002) as! UIImageView
                 imageView.image = UIImage(named:iconName)
             }

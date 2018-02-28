@@ -15,12 +15,16 @@ class ChecklistItem: NSObject, Codable {
     var iconName:String = ""
     var location = ""
     var slider:Float = 0.0
+    var latitude:Double
+    var longitude:Double
     
-    init(text: String, checked:Bool, location: String, slider: Float){
+    init(text: String, checked:Bool, location: String, slider: Float, latitude: Double, longitude: Double){
         self.text = text
         self.checked = checked
         self.location = location
         self.slider = slider
+        self.latitude = latitude
+        self.longitude = longitude
     }
 
 }

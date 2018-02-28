@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F78EA18204730EF00253F28 /* TouristPlaces.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TouristPlaces.gpx; sourceTree = "<group>"; };
 		3FF7283B2033D7BF00ABE2BD /* Datamodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datamodel.swift; sourceTree = "<group>"; };
 		3FF8338520336F140070F1B4 /* canadatouristplaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = canadatouristplaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF8338820336F140070F1B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 				3FF833BC20337CCB0070F1B4 /* AddAttractionViewController.swift */,
 				3FF833BE20338C9F0070F1B4 /* IconPickerViewController.swift */,
 				3FF7283B2033D7BF00ABE2BD /* Datamodel.swift */,
+				3F78EA18204730EF00253F28 /* TouristPlaces.gpx */,
 			);
 			path = canadatouristplaces;
 			sourceTree = "<group>";

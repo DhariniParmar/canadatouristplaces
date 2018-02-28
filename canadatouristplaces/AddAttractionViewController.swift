@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol AddAttractionVCDelegate: class {
     
@@ -15,12 +16,17 @@ protocol AddAttractionVCDelegate: class {
     func addAttractionVC(_ control: AddAttractionViewController, didFinishEdit item: ChecklistItem)
 }
 
-class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
+class AddAttractionViewController: UITableViewController, IconPickerVCDelegate, CLLocationManagerDelegate {
     
     
     @IBOutlet weak var textfield: UITextField!
+    let locationManager = CLLocationManager()
     
     @IBOutlet weak var showRate: UILabel!
+    
+    @IBOutlet weak var textFieldLongitude: UITextField!
+    
+    @IBOutlet weak var textFieldLatitude: UITextField!
     
     @IBOutlet weak var ratingSlider: UISlider!
     @IBOutlet var datePickerCell: UITableViewCell!
@@ -45,6 +51,9 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
             textfieldLocation.text = item.location
             ratingSlider.value = item.slider
             showRate.text = String(ratingSlider.value)
+            textFieldLongitude.text = String(item.longitude)
+            textFieldLatitude.text = String(item.latitude)
+        
             self.title = "EditAttraction"
             iconProvinceName = item.iconName
             if let iconName = iconProvinceName {
@@ -102,8 +111,10 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
             let text = textfield.text!
             let location = textfieldLocation.text!
             let sliderValue = ratingSlider.value
+            let latitude = Double(textFieldLatitude.text!)
+            let longitude = Double(textFieldLongitude.text!)
             //make a new checklistitem object
-            let item = ChecklistItem(text: text, checked: false, location: location, slider: sliderValue )
+            let item = ChecklistItem(text: text, checked: false, location: location, slider: sliderValue, latitude: latitude!, longitude: longitude! )
             if let icon = iconProvinceName {
                 item.iconName = icon
             }
@@ -117,6 +128,79 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate {
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         delegate?.addAttractionVCDidCancel()
     }
+    
+    
+    @IBAction func ForwardGeocodingToGPS(_ sender: Any) {
+        
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString((textfieldLocation.text)!, completionHandler: {
+            placemarks, error in
+            print("Found the location: \(String(describing: placemarks))")
+            if let placemark = placemarks?.last {
+                if  let latitude = placemark.location?.coordinate.latitude,
+                    let longitude = placemark.location?.coordinate.longitude {
+                    self.textFieldLatitude.text = "\(String(describing: latitude))"
+                    self.textFieldLongitude.text = "\(String(describing: longitude))"
+                    let alert = UIAlertController(title: "Geocode Lookup Result GeoForwarding:", message:
+                        
+                        "The location Longitude: \(self.textFieldLongitude.text!) and The location Latitude: \(self.textFieldLatitude.text!)" , preferredStyle: .alert)
+                    
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    
+                    alert.addAction(alertAction)
+                    
+                   self.present(alert, animated: true, completion: nil)
+                }
+            }
+        })
+        
+    }
+    
+    
+    
+    @IBAction func ReverseGeocodingToAddress(_ sender: Any) {
+        
+        let geocoder = CLGeocoder();
+        let location = CLLocation(latitude: Double(textFieldLatitude.text!)!,  longitude: Double(textFieldLongitude.text!)! )
+        geocoder.reverseGeocodeLocation(location, completionHandler: {
+            placemarks, error in
+            print("Location Found: \(String(describing: placemarks))")
+            if let placemark = placemarks?.last!{
+                var address = ""
+                if let streetFirst = placemark.subThoroughfare {
+                    address = address + streetFirst + " "
+                }
+                if let streetTwo = placemark.thoroughfare {
+                    address = address + streetTwo + " "
+                }
+                if let city = placemark.locality {
+                    address = address + city + " "
+                }
+                if let prov = placemark.administrativeArea {
+                    address = address + prov + " "
+                }
+                if let postcode = placemark.postalCode{
+                    address = address + postcode + " "
+                }
+                self.textfieldLocation.text = address
+                
+                let alert = UIAlertController(title: "Geocode Lookup Result:", message:
+                    
+                    "The location Address: \(self.textfieldLocation.text!)" , preferredStyle: .alert)
+
+                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+                alert.addAction(alertAction)
+
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+        })
+    }
+    
+    
+    
+    
     
     // MARK: - Table view data source
 /*

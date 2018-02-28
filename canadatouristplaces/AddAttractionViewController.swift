@@ -199,7 +199,21 @@ class AddAttractionViewController: UITableViewController, IconPickerVCDelegate, 
     }
     
     
+    @IBAction func myLocation(_ sender: Any) {
+        
+        let authStatus = CLLocationManager.authorizationStatus()
+        if authStatus == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+            return
+        }
+        if authStatus == .denied || authStatus == .restricted {
+            print("Cannot access user location -- not allowed")
+            return
+    }
     
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
     
     
     // MARK: - Table view data source

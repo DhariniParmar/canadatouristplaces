@@ -304,7 +304,11 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="d4N-dk-nmK"/>
-                        <barButtonItem title="MyLocation" id="rTL-g3-EoP"/>
+                        <barButtonItem title="MyLocation" id="rTL-g3-EoP">
+                            <connections>
+                                <action selector="myLocation:" destination="qAI-9e-4rc" id="6RR-6N-gcg"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Add Atrraction" id="C8P-gn-Iwt">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="nbn-uY-XYM">
